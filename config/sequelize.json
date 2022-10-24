@@ -1,10 +1,13 @@
 {
   "development": {
-    "username": "root",
-    "password": null,
-    "database": "database_development",
+    "username": "demo",
+    "password": "demo123",
+    "database": "contador-calorias",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "postgres",
+    "define": {
+      "timestamp": true
+    }
   },
   "test": {
     "username": "root",

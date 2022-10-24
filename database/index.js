@@ -1,6 +1,6 @@
 const {Sequelize, DataTypes} = require('sequelize')
-const User = require('./user')
-const config = require('../../config/sequelize.json')['development']
+const User = require('./models/user')
+const config = require('../config/sequelize.json')['development']
 
 const sequelize = new Sequelize(config.database, config.username, config.password,config)
 
