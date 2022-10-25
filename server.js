@@ -7,6 +7,8 @@ const session = require('express-session')
 const passport = require('passport')
 const passportConfig = require('./config/passaport.config')
 
+const cookieParser = require("cookie-parser")
+
 const route = require('./routes')
 
 //View engine
@@ -22,6 +24,9 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }))
+
+//Cookie
+app.use(cookieParser())
 
 //Passport
 passportConfig.localConfig(passport)
