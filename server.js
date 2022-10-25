@@ -6,8 +6,8 @@ const session = require('express-session')
 
 const passport = require('passport')
 const passportConfig = require('./config/passaport.config')
-//Passport
-passportConfig.localConfig(passport)
+
+const route = require('./routes')
 
 //View engine
 app.set('view-engine', 'ejs')
@@ -22,6 +22,9 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }))
+
+//Passport
+passportConfig.localConfig(passport)
 app.use(passport.initialize())
 app.use(passport.session())
 
@@ -29,9 +32,7 @@ app.use(passport.session())
 app.use(flash())
 
 
-
 //Rotas
-const route = require('./routes')
 app.use(route(passport))
 
 
