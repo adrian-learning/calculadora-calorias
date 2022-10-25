@@ -8,5 +8,5 @@ const user = User(sequelize, DataTypes)
 
 module.exports = {
     sequelize,
-    User: user
+    'User': user
 }

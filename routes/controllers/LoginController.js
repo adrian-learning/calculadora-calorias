@@ -1,10 +1,10 @@
 module.exports = {
     login: (req, res) => {
-        
+        res.send('Logged fail')
     },
 
     authenticateLogin: (passport) => passport.authenticate('local', {
-        successRedirect: '/',
+        successRedirect: '/home',
         failureRedirect: '/login',
         failureFlash: true
     })
