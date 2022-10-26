@@ -1,0 +1,42 @@
+<div class="d-flex justify-content-center align-items-center" 
+     style="height: 100vh;display: flex;">
+    
+     <div class="row">
+
+         <h2 class="text-center">Register</h2>
+         <form action="/register" method="post">
+            <div class="d-flex flex-column mb-3">
+                <% if(messages.message) {%>
+                    <p><%=  messages.message %></p>
+                <% } %>
+                <div class="mb-3">
+                    <label for="username" class="form-label">Name</label>
+                    <input type="text" class="form-control"  name="username" placeholder="username">
+                </div>
+                <div class="mb-3">
+                    <label for="firstname" class="form-label">Firstname</label>
+                    <input type="text" class="form-control"  name="firstname" placeholder="First Name">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" name="password"  placeholder="password">
+                </div>
+            </div>
+
+            <div class="d-flex">
+                
+            </div>
+        
+            <div class="d-flex justify-content-between">
+                <button type="button" class="btn btn-primary" onclick="backLogin()">Back</button>
+                <button type="submit" class="btn btn-primary">Create</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const backLogin = () => {
+            location.href = '/login'
+        }
+    </script>
+</div>

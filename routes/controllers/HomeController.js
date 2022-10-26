@@ -4,7 +4,6 @@ module.exports = {
     home: async (req,res) => {
         try {
             const userId = parseInt(req.params.id)
-            console.log(userId)
 
             const userInfo = await UserInfo.findOne({
                 //raw: true,
@@ -14,9 +13,11 @@ module.exports = {
                     attributes: ['firstname']
                 }
             })
-            
 
             if(userInfo) res.json(userInfo)
+            else{
+                res.json({user: 'vazio'})
+            }
         
         } catch (error) {
             res.send(error)
