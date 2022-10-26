@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt')
 
 module.exports = {
     login: (req, res) => {
-        res.send('Logged fail')
+        res.render('login/login', { title: 'Login' })
     },
 
     showRegister: (req, res) => {
@@ -19,23 +19,28 @@ module.exports = {
         }
 
         try{
-            if(await User.findOne({username: username})){
+            if(await User.findOne({where: { username: username } })){
                 req.flash('message', 'Usuário já existe!')
                 res.redirect('/register')
             }
-            
+
             const pass = await bcrypt.hash(password, 10)
             const user = await User.create({ username: username, password: pass, firstname: firstname })
 
-            res.redirect(`/user/${user.id}/info`)
+            res.redirect(`/home/${user.id}`)
         }catch(e){
             res.send(e) //Error Page
         }
     },
 
     authenticateLogin: (passport) => passport.authenticate('local', {
-        successRedirect: '/home',
+        //successRedirect: '/home',
         failureRedirect: '/login',
         failureFlash: true
-    })
+    }),
+
+    toHome: (req, res) => {
+        const user = req.user
+        res.redirect(`/home/${user.id}`)
+    }
 }

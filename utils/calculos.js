@@ -1,24 +1,41 @@
-module.exports = {
-    basal: (user) => {
-        if (!user) return null
 
-        if (user.gender === 'F') {
-            return 655.1 + (9.563 * user.weight) + (1.85 * user.height) - (4.676 * user.age)
-        } else if (user.gender === 'M') {
-            return 66.5 + (13.75 * user.weight) + (5.003 * user.height) - (6.775 * user.age)
-        }
+const basal = (user) => {
 
-        return null
+    const weight = parseFloat(user.weight)
+    const height = parseFloat(user.height)
+    const age = parseInt(user.age)
 
-    },
 
-    tdde: (user) => {
-        if (!user.basal) return null
-
-        if (user.factor) {
-            return parseInt(user.basal) * parseFloat(user.factor)
-        }
-
-        return null
+    if (user.gender === 'F') {
+        return (655.1 + (9.563 * weight) + (1.85 * height) - (4.676 * age)).toFixed(2)
+    } else if (user.gender === 'M') {
+        return (66.5 + (13.75 * weight) + (5.003 * height) - (6.775 * age)).toFixed(2)
     }
+
+    return null
+
+}
+
+const tdee = (user) => {
+
+    if (user.factor) {
+        return (basal(user) * parseFloat(user.factor)).toFixed(2)
+    }
+
+    return null
+}
+
+const bulking = (user) => {
+    return tdee(user) + 500
+}
+
+const cutting = (user) => {
+    return tdee(user) - 500
+}
+
+module.exports = {
+    basal,
+    tdee,
+    bulking,
+    cutting
 }

@@ -8,7 +8,8 @@ const localConfig = (passport) => {
 
         if (!username || !password) done(null, false, { message: 'Obrigatório informar username/password' })
 
-        const user = await User.findOne({ username: username })
+        const user = await User.findOne({ where: { username: username } })
+       
 
         if (user || user != undefined) {
 
@@ -21,6 +22,7 @@ const localConfig = (passport) => {
 
         }
         else {
+            
             done(null, false, { message: 'Usuário não existe' })
         }
     }

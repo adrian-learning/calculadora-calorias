@@ -3,6 +3,7 @@ const express = require('express')
 const app = express()
 const flash = require('express-flash')
 const session = require('express-session')
+const expressLayouts = require('express-ejs-layouts')
 
 const passport = require('passport')
 const passportConfig = require('./config/passaport.config')
@@ -11,11 +12,16 @@ const cookieParser = require("cookie-parser")
 
 const route = require('./routes')
 
+
 //View engine
-app.set('view-engine', 'ejs')
+app.set('view engine', 'ejs')
+//Layout ejs
+app.use(expressLayouts)
+app.set('layout', './layouts/main')
+
 
 //Use Json
-//app.use(express.urlencoded({ extended: false }))
+app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 
 //Session
