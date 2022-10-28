@@ -12,9 +12,8 @@ module.exports = {
 
         console.log('Meu id: ', userId)
         try {
-            
             const [userInfo, created] = await UserInfo.findOrCreate({
-                where: { userId: userId, week: week },
+                where: { userId: userId, week: parseInt(week) },
                 defaults: {
                     age: age,
                     gender: gender,
@@ -43,18 +42,19 @@ module.exports = {
                     where: { userId: userId, week: week },
                     returning: true
                 })
+                const newUser = updatedUser[0]
                
-                const userBasal = basal(userInfo)
-                const userTdee = tdee(userInfo)
+                const userBasal = basal(newUser)
+                const userTdee = tdee(newUser)
     
                 console.log("Basal: ", userBasal)
                 
                 
-                res.json({ basal: userBasal, tdee: userTdee, ...updatedUser[0].dataValues })
+                res.json({ basal: userBasal, tdee: userTdee, ...newUser.dataValues })
             }
 
         } catch (e) {
-            
+            console.log(e)
             res.send(e)
         }
     }

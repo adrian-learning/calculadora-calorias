@@ -1,3 +1,4 @@
+const sedentaryFactors = [1.2, 1.375, 1.55, 1.725, 1.9]
 
 const basal = (user) => {
 
@@ -19,7 +20,7 @@ const basal = (user) => {
 const tdee = (user) => {
 
     if (user.factor) {
-        return (basal(user) * parseFloat(user.factor)).toFixed(2)
+        return (basal(user) * parseFloat(sedentaryFactors[user.factor])).toFixed(2)
     }
 
     return null

@@ -1,0 +1,110 @@
+<head>
+    <style>
+        #basalText {
+            display: flex;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+    rel="stylesheet">
+</head>
+
+<div class="card-box">
+    <div class="row align-items-center">
+
+        <!-- Left side -->
+        <div class="col-5 fill-bg ">
+            <form action="" method="post">
+                <div class="d-flex flex-column mb-3">
+        
+                    <div class="mb-3">
+                        <label for="" class="form-label">Idade</label>
+                        <input type="text" class="form-control" name="age" onfocus="removeErrorField(this)">
+                    </div>
+        
+                    <div class="mb-3">
+                        <label for="" class="form-label">Altura (cm)</label>
+                        <input type="text" class="form-control" name="height" onfocus="removeErrorField(this)">
+                    </div>
+        
+                    <div class="mb-3">
+                        <label for="" class="form-label">Peso (kg)</label>
+                        <input type="text" class="form-control" name="weight" onfocus="removeErrorField(this)">
+                    </div>
+        
+                    <div class="mb-3">
+                        <label for="" class="form-label">Atividade</label>
+                        <select class="form-select form-select-lg" name="activity" id="">
+                            <option selected value="0">Sedentário (escritório)</option>
+                            <option value="1">Exercícios leves (1-2 dias/semana)</option>
+                            <option value="2">Exercícios moderados (3-5 dias/semana)</option>
+                            <option value="3">Exercícios pesados (6-7 dias/semana)</option>
+                            <option value="4">Atleta (2x/dia)</option>
+                        </select>
+                    </div>
+        
+                </div> 
+
+                <div class="d-flex justify-content-center">
+                    <label for="">Gênero</label>
+                </div>
+                <div class="d-flex mt-3 justify-content-center">    
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="genderRadio" id="radioM" value="M" checked>
+                        <label class="form-check-label" for="radioM">Homem</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="genderRadio" id="radioF" value="F">
+                        <label class="form-check-label" for="radioF">Mulher</label>
+                    </div>
+
+                </div>
+        
+                
+                
+            </form>
+        </div>
+
+        <!-- Button middle -->
+        <div class="col-2 text-center justify-content-center updateBtn pointer-cursor" onclick="updateInfo()">
+            
+            <div class="row arrow-button">
+                    <div class="arrow"></div>
+            </div>
+            <div class="row justify-content-center mt-3 ">Calculate</div>
+            <!-- <button type="button" class="btn btn-primary" onclick="updateInfo()">Atualizar</button> -->
+        </div>
+        
+        <!-- Right Side -->
+        <div class="col-5 text-center fill-bg center-all">
+            <div class="d-flex flex-column">
+                <h2><%= user.User.firstname %></h2>
+        
+                <div id="basalText" class="justify-content-center">
+                    <p>Seu metabolismo basal é&nbsp</p>
+        
+                    <div id="showBasal" >
+                        <% if (user.basal) { %>
+                            <%= Math.round(user.basal) %>     
+                        <% } else { %>
+                            0
+                        <% } %>
+                    </div>
+                </div>
+                <p>Seu consumo calórico para manter:</p>
+                <h2 id="showTdee">
+                    <% if (user.tdee) { %>
+                        <%= Math.round(user.tdee) %>     
+                    <% } else { %>
+                        0
+                    <% } %>
+                </h2>
+            </div>
+        
+            
+        
+        </div>
+
+    </div>
+</div>
+
+<script type="module" src="/public/scripts/home.script.js" ></script>

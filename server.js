@@ -1,4 +1,5 @@
 require('dotenv').config()
+const path = require('path')
 const express = require('express')
 const app = express()
 const flash = require('express-flash')
@@ -18,6 +19,11 @@ app.set('view engine', 'ejs')
 //Layout ejs
 app.use(expressLayouts)
 app.set('layout', './layouts/main')
+
+//For script load on html
+const scriptPath = path.join(__dirname, 'public')
+console.log(scriptPath)
+app.use('/public', express.static(scriptPath))
 
 
 //Use Json

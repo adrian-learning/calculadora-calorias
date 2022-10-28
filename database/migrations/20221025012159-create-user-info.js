@@ -39,7 +39,7 @@ module.exports = {
     }, {
       uniqueKeys: {
         uniqueFields: {
-          fields: ['userId', 'age']
+          fields: ['userId', 'week']
         }
       }
     });

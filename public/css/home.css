@@ -1,0 +1,100 @@
+body {
+    background-color: #1f1f1f;
+}
+
+.card-box {
+    background-color: #292928;
+    color: white;
+    margin-top: 2em;
+
+    border-radius: 30px 30px 30px 30px;
+    box-shadow: 0px 0px 25px rgba(0,0,0,0.2);
+
+    padding: 35px;
+}
+
+.pointer-cursor {
+    cursor: pointer;
+}
+
+.arrow-button {
+    display: grid;
+    justify-content: center;
+}
+
+.arrow {
+    height: 30px;
+    width: 30px;
+    border: solid white;
+    border-width: 0 5px 5px 0;
+    transform: rotate(-45deg);
+    margin-right: 10px;
+    transition: 0.5s;
+}
+
+.arrow::before {
+    position: absolute;
+    border: solid white;
+    height: 30px;
+    width: 30px;
+    border-width: 0 5px 5px 0px;   
+    margin: 0px 0px 0px -12px; 
+    content: '';
+    transition: 0.5s;
+}
+
+.updateBtn:hover .arrow::before {
+    transform: translate(-20px, -20px); 
+    /* margin: -20px 0px 0px -30px;  */
+    transition: 0.5s;
+}
+
+.updateBtn:hover .arrow {
+    /* margin: 35px 0px -65px 42px; */
+    margin-right: -20px;
+    transition: 0.5s, 0.5s;
+}
+
+.fill-bg {
+    height: 100%;
+}
+
+.center-all {
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+}
+
+input[type=text], .width-reduce {
+    width: 70%;
+}
+
+input[type=text], input[type=text]:focus{
+    background-color: #1f1f1f;
+    border: solid rgba(255,255,255,0.1);
+    border-width: 2px;
+    color: white;
+}
+
+input[type=text]:focus {
+    box-shadow: 0px 0px 5px rgba(170, 170, 170, 0.822);
+}
+
+.input-error {
+    /* border: solid rgba(235, 31, 31, 0.925) !important; */
+    
+    box-shadow: 0px 0px 10px rgb(255, 12, 12);
+    transition: 0.2s;
+}
+
+.form-select{
+    width: 70%;
+    font-size: 93%;
+    background-color: #1f1f1f;
+    color: white;
+}
+
+.mb-3 {
+    display: grid;
+    justify-items: center;
+}
