@@ -1,6 +1,7 @@
 import axiosInstance from './axios.js'
 
 export const updateInfo = async () => {
+
     const age = document.getElementsByName('age')[0]
     const height = document.getElementsByName('height')[0]
     const weight = document.getElementsByName('weight')[0]
@@ -29,6 +30,12 @@ export const updateInfo = async () => {
                 document.getElementById('showTdee').innerHTML = Math.round(response.data.tdee)
     
                 console.log(response.data);
+
+                changeIcon(true)
+
+                setTimeout(() => {
+                    changeIcon(false)
+                },1500)
             }
         } catch (error) {
             console.error(error);
@@ -59,5 +66,38 @@ export const removeErrorField = (field) => {
     field.classList.remove('input-error')
 }
 
+const changeIcon = (toggle) => {
+    const arrowOne = document.getElementById('arrowOne')
+    const arrowTwo = document.getElementById('arrowTwo')
+    const divButton = document.getElementById('updateBtn')
+    const tdee = document.getElementById('showTdee')
+    
+    if(toggle){
+        arrowOne.classList.add('gg-check')
+        
+        arrowTwo.classList.remove('arrow')
+    
+        divButton.classList.remove('updateBtn')
+        tdee.classList.add('zoom')
+
+    }else{
+        arrowOne.classList.remove('gg-check')
+        
+        setTimeout(() => {
+            arrowTwo.classList.add('arrow')
+            tdee.classList.remove('zoom')
+        }, 500);
+        divButton.classList.add('updateBtn')
+    }
+}
+
+const logout = () => {
+    axiosInstance.post('/logout').then((res) => {
+        document.location.href = '/login'
+    })
+}
+
 window.updateInfo = updateInfo
 window.removeErrorField = removeErrorField
+window.changeIcon = changeIcon
+window.logout = logout

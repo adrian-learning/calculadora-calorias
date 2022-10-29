@@ -1,10 +1,14 @@
+<head>
+    <link rel="stylesheet" href="../../public/css/login.css">
+</head>
+
 <div class="d-flex justify-content-center align-items-center" 
      style="height: 100vh;display: flex;">
     
      <div class="row">
-         <h2 class="text-center">Login</h2>
+         <h2 class="text-center mb-3">Login</h2>
          
-         <form action="/login" method="post">
+         <form action="/login" method="post" >
             <div class="d-flex flex-column mb-3">
                 <% if(messages.error) {%>
                     <p><%=  messages.error %></p>

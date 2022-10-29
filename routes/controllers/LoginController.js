@@ -18,6 +18,8 @@ module.exports = {
             res.redirect('/register')
         }
 
+        
+
         try{
             if(await User.findOne({ where: { username: username.trim() } })){
                 req.flash('message', 'Usuário já existe!')
@@ -30,7 +32,7 @@ module.exports = {
             }
 
         }catch(e){
-            res.send('Error') //Error Page
+            res.render('error/error', {title: "Error Page", error: e})
         }
     },
 
@@ -40,8 +42,33 @@ module.exports = {
         failureFlash: true
     }),
 
+    logout: (req, res) => {
+        if (req.cookies['userId']) res.clearCookie('userId')
+
+        // req.logOut((err) => {
+        //     res.render('error/error', {title: "Error Page", error: err})
+        // })
+        req.session.destroy(function (err) {
+            res.redirect('/login'); 
+          });
+    },
+
     toHome: (req, res) => {
         const user = req.user
         res.redirect(`/home/${user.id}`)
+    },
+
+    checkAutenticated: (req, res, next) => {
+        console.log('Is auth')
+        if (req.isAuthenticated()) return next()
+        res.redirect('/login')
+    },
+    
+    checkIsNotAuthenticated: (req, res, next) => {
+        if(!req.isAuthenticated()) return next()
+        console.log('aft not auth')
+        const userId = req.user.id
+        console.log(userId)
+        res.redirect(`/home/${userId}`)
     }
 }

@@ -8,18 +8,14 @@ const UserController = require('./controllers/UserController')
 
 module.exports = (passport) => {
     router.get('/', InitialController.initial)
-    router.get('/login', LoginController.login)
-    router.get('/register', LoginController.showRegister)
-    router.get('/home/:id', HomeController.home)
-    //router.get('/user/:id/info', UserController.getInfo)
+    router.get('/login', LoginController.checkIsNotAuthenticated, LoginController.login)
+    router.get('/register', LoginController.checkIsNotAuthenticated, LoginController.showRegister)
+    router.get('/home/:id', LoginController.checkAutenticated, HomeController.home)
     
-    router.post('/login', (req,res,next) => {
-        console.log(req.body)
-        next()
-    } ,LoginController.authenticateLogin(passport), LoginController.toHome)
+    router.post('/login',LoginController.authenticateLogin(passport), LoginController.toHome)
     router.post('/register', LoginController.register)
     router.post('/home/:id/info', UserController.setInfo)
-    
+    router.post('/logout', LoginController.logout)
 
     return router
 }
